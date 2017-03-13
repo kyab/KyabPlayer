@@ -2,7 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LastAccessedDate</key>
+	<date>2017-03-13T15:19:56Z</date>
 	<key>WorkspacePath</key>
-	<string>/Users/koji/work/KyabPlayer/KyabPlayer.xcodeproj</string>
+	<string>/Users/koji/works/2016_07/KyabPlayer/KyabPlayer.xcodeproj</string>
 </dict>
 </plist>
