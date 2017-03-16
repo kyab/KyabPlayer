@@ -742,7 +742,7 @@
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0NY-VT-lna">
                                 <rect key="frame" x="51" y="485" width="507" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" title="https://www.youtube.com/watch?v=apr2JCdpTbQ" drawsBackground="YES" id="xaa-00-lPu">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" title="https://www.youtube.com/watch?v=I0hDOnrOLgk" drawsBackground="YES" id="xaa-00-lPu">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -792,6 +792,14 @@
                                 <connections>
                                     <action selector="setLoopEndToCurrentTime:" target="XfG-lQ-9wD" id="f8j-s2-OLf"/>
                                 </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yHg-Eg-uQf">
+                                <rect key="frame" x="396" y="382" width="99" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Auto Interval" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ib0-Rf-NW1">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pcz-zs-aUC">
                                 <rect key="frame" x="97" y="325" width="105" height="18"/>
@@ -1037,6 +1045,8 @@ IA
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chkAutoInterval" destination="yHg-Eg-uQf" id="bkM-F5-HAe"/>
+                        <outlet property="chkInterval" destination="yHg-Eg-uQf" id="VYJ-va-LDW"/>
                         <outlet property="chkLoop" destination="pcz-zs-aUC" id="Phv-FL-TCp"/>
                         <outlet property="editURL" destination="0NY-VT-lna" id="OWh-Yr-1AG"/>
                         <outlet property="lblCurrentTime" destination="WRb-fm-qLF" id="gcr-yu-JTY"/>

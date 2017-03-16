@@ -21,6 +21,7 @@ class ViewController: NSViewController, WebUIDelegate {
     @IBOutlet weak var chkLoop: NSButton!
     @IBOutlet weak var lblSpeed: NSTextField!
     @IBOutlet weak var sliderSpeed: NSSlider!
+    @IBOutlet weak var chkAutoInterval: NSButton!
     
     var youtubeURL : String?
     var currentSec : Double = 0
@@ -29,6 +30,8 @@ class ViewController: NSViewController, WebUIDelegate {
     
     var loopStartSec : Double = 0.0
     var loopEndSec : Double = 0.0
+    
+    var intervalTimer : Timer?
     
     let VIDEO_ELEMENT = "document.getElementsByClassName('html5-main-video')[0]"
 
@@ -89,6 +92,11 @@ class ViewController: NSViewController, WebUIDelegate {
         
     }
     
+    func onTimerInterval(_ t:Timer){
+        intervalTimer = nil
+        webView.stringByEvaluatingJavaScript(from: VIDEO_ELEMENT + ".play()")
+    }
+    
     func onTimer(_ t:Timer){
 
         let title = webView.stringByEvaluatingJavaScript(from: "document.title")
@@ -102,7 +110,20 @@ class ViewController: NSViewController, WebUIDelegate {
             
             if (chkLoop.state == NSOnState){
                 if ((loopEndSec > 0.0) && (currentSec > loopEndSec)){
-                    webView.stringByEvaluatingJavaScript(from: VIDEO_ELEMENT + ".currentTime = " + loopStartSec.description)
+                    
+                    if (chkAutoInterval.state == NSOnState){
+                        if (intervalTimer==nil){
+                            webView.stringByEvaluatingJavaScript(from: VIDEO_ELEMENT + ".currentTime = " + loopStartSec.description)
+                            webView.stringByEvaluatingJavaScript(from: VIDEO_ELEMENT + ".pause()")
+                            intervalTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self,
+                                             selector: #selector(ViewController.onTimerInterval(_:)),
+                                             userInfo: nil,
+                                             repeats: false)
+                        }
+                    }else{
+                        webView.stringByEvaluatingJavaScript(from: VIDEO_ELEMENT + ".currentTime = " + loopStartSec.description)
+                    }
+
                     return
                 }
             }
@@ -169,6 +190,7 @@ class ViewController: NSViewController, WebUIDelegate {
     
     @IBAction func seekToLoopStart(_ sender: AnyObject) {
         webView.stringByEvaluatingJavaScript(from: VIDEO_ELEMENT + ".currentTime = " + loopStartSec.description)
+        webView.stringByEvaluatingJavaScript(from: VIDEO_ELEMENT + ".play()")
     }
     @IBAction func seekToLoopEnd(_ sender: AnyObject) {
         webView.stringByEvaluatingJavaScript(from: VIDEO_ELEMENT + ".currentTime = " + loopEndSec.description)
